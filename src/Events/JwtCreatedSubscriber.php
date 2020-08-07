@@ -6,12 +6,6 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 
 class JwtCreatedSubscriber
 {
-    /**
-     * Permet d'ajouter le nom et le prénom dans le token
-     *
-     * @param JWTCreatedEvent $event
-     * @return void
-     */
     public function updateJwtData(JWTCreatedEvent $event)
     {
         // 1. Récupérer l'utilisateur (pour avoir son firstName et lastName)
@@ -19,8 +13,8 @@ class JwtCreatedSubscriber
 
         // 2. Enrichir les data pour qu'elles contiennent ces données
         $data = $event->getData();
-        $data['firstName'] = $user->getFirstName();
-        $data['lastName'] = $user->getLastName();
+        $data['firstname'] = $user->getFirstName();
+        $data['lastname'] = $user->getLastName();
 
         $event->setData($data);
     }
